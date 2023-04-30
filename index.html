@@ -7,11 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="minutka.css" rel="stylesheet" />
 </head>
-<div class="underlay center">
-  <div id="current-time"></div>
-</div>
 
 <body>
+  <!-- Underlay of timer begins here. -->
+  <div class="underlay center">
+    <!-- Clock is displayed here. -->
+    <div id="clock"></div>
+    <!-- Here are displayed visual signal of timer. -->
+    <div id="signaller">
+      <!-- Place to display counter. -->
+      <div id="counter"><span>--</span></div>
+    </div>
+    <!-- Hours and minutes input. -->
+    <div>
+      <label for="input-hours">hours:</label>
+      <input id="input-hours" type="number" name="hours" value="0" />
+
+      <label for="input-minutes">minutes:</label>
+      <input id="input-minutes" type="number" name="minutes" value="0" />
+    </div>
+    <!-- Controlls. -->
+    <div>
+      <button id="button-start">Start</button>
+      <button id="button-stop">Stop</button>
+      <button id="button-reset">Reset</button>
+    </div>
+  </div>
+
+  <!-- Scripts of all kinds. -->
   <script src="minutka.js"></script>
 </body>
 
