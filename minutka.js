@@ -6,7 +6,7 @@ function fillElementWithCurrentTime(element) {
 }
 
 // Counter function:
-function counter(hours, minutes, element) {
+function counter(hours, minutes, displayElement) {
   // Convert to seconds and get total length of countdown:
   const countdownInSeconds = hours * 3600 + minutes * 60;
   // For every second of countdown refresh data on counter display:
@@ -19,7 +19,7 @@ function counter(hours, minutes, element) {
       const displaySeconds = Math.round(
         (((((countdownInSeconds - i) / 3600) % 1) * 60) % 1) * 60
       );
-      element.innerText = `${
+      displayElement.innerText = `${
         String(displayHours).length > 1 ? displayHours : "0" + displayHours
       }:${
         String(displayMinutes).length > 1
@@ -48,6 +48,9 @@ const minutesInput = document.getElementById("input-minutes");
 
 // Get element for start button:
 const startButton = document.getElementById("button-start");
+
+// Get element for stop button:
+const stopButton = document.getElementById("button-stop");
 
 // Get element to display countdown:
 const countdownDisplay = document.getElementById("counter");
