@@ -14,9 +14,7 @@ function countdown(countdownInSeconds, ticks) {
         console.log(countdownInSeconds - ticks);
         if (ticks === countdownInSeconds) {
             stopCountdown();
-            console.log('konzole předtím');
             controlPannel.replaceChild(buttonStart, buttonPause);
-            console.log('konzole za tím');
         }
     }, 1000);
 }
@@ -72,4 +70,10 @@ buttonStart.addEventListener('click', () => {
     hours = inputHours.value;
     minutes = inputMinutes.value;
     startCountdown();
+});
+
+// Stop countdown on pressing stop button:
+buttonStop.addEventListener('click', () => {
+    stopCountdown();
+    controlPannel.replaceChild(buttonStart, buttonPause);
 });
