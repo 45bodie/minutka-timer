@@ -8,9 +8,10 @@
   */
 
 // Countdown function:
-function countdown(countdownInSeconds) {
+function countdown(countdownInSeconds, displayElement) {
     timer = setInterval(() => {
         ticks++;
+        displayElement.innerText = `${countdownInSeconds - ticks}`;
         console.log(countdownInSeconds - ticks);
         if (ticks === countdownInSeconds) {
             stopCountdown();
@@ -28,7 +29,7 @@ function startCountdown() {
     if (countdownInSeconds <= 0) {
         return;
     } else {
-        countdown(countdownInSeconds, ticks);
+        countdown(countdownInSeconds, counterDisplay);
         controlPannel.replaceChild(buttonPause, buttonStart);
     }
     // TODO: Disable inputs while counting!
@@ -54,7 +55,7 @@ function resumeCountdown() {
     if (countdownInSeconds <= 0) {
         return;
     } else {
-        countdown(countdownInSeconds, ticks);
+        countdown(countdownInSeconds, counterDisplay);
         controlPannel.replaceChild(buttonPause, buttonResume);
     }
 }
@@ -64,6 +65,9 @@ function checkTicks() {
     return ticks;
 }
 
+// Get counter display element:
+const counterDisplay = document.getElementById('counter');
+counterDisplay.innerText = '00:00:00';
 // Get hours input:
 const inputHours = document.getElementById('input-hours');
 // Get minutes input:
@@ -106,6 +110,7 @@ buttonStart.addEventListener('click', () => {
 buttonStop.addEventListener('click', () => {
     stopCountdown();
     controlPannel.replaceChild(buttonStart, buttonPause);
+    counterDisplay.innerText = `${inputHours.value}:${inputMinutes.value}:00`;
     // TODO: click on stop button while countdown is paused
 });
 
@@ -118,4 +123,12 @@ buttonPause.addEventListener('click', () => {
 // Resume countdown on resume button click:
 buttonResume.addEventListener('click', () => {
     resumeCountdown();
+});
+
+// Reset counter and all around by pressing reset button:
+buttonReset.addEventListener('click', () => {
+    ticks = 0;
+    inputHours.value = '0';
+    inputMinutes.value = '0';
+    counterDisplay.innerText = '00:00:00';
 });
