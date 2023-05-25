@@ -1,45 +1,55 @@
 body {
-  background-color: #333652;
+    background-color: #333652;
 }
 
 .center {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 .underlay {
-  width: 50%;
+    width: 60%;
 }
 
 .current-time {
-  color: #90adc6;
-  font-weight: bold;
-  font-family: "Open Sans", sans-serif;
-  font-size: 2em;
+    color: #90adc6;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
 }
 
 .large-label {
-  margin: 1em 3em 1em 3em;
-  color: #fad02cff;
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  font-size: 1.2em;
+    color: #fad02cff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .centered-text {
-  text-align: center;
+    text-align: center;
 }
 
 #clock {
-  text-align: center;
+    text-align: center;
 }
 
 #counter {
-  text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-#counter span {
-  color: #e9eaecff;
-  font-family: "Open sans", sans-serif;
-  font-size: 8em;
-  font-weight: bold;
+.clock-digits {
+    color: #e9eaecff;
+    font-family: 'Open sans', sans-serif;
+    font-size: 8em;
+    font-weight: bold;
+}
+
+#inputs input {
+    width: 3rem;
+}
+
+.clock-digits-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

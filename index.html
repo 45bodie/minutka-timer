@@ -1,49 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <title>Minutka timer</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="minutka.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
 
-<head>
-    <title>Minutka timer</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="minutka.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
-</head>
+    <body>
+        <!-- Underlay of timer begins here. -->
+        <div class="underlay center">
+            <!-- Clock is displayed here. -->
+            <div id="clock"></div>
+            <!-- Here are displayed timer visual signals. -->
+            <div id="signaller">
+                <!-- Place to display counter. -->
+                <div id="counter">
+                    <div class="clock-digits-container">
+                        <span id="hour-col" class="clock-digits">00</span>
+                        <span class="large-label">hours</span>
+                    </div>
+                    <div class="clock-digits-container">
+                        <span class="clock-digits">:</span>
+                    </div>
+                    <div class="clock-digits-container">
+                        <span id="minute-col" class="clock-digits">00</span>
+                        <span class="large-label">minutes</span>
+                    </div>
+                    <div class="clock-digits-container">
+                        <span class="clock-digits">:</span>
+                    </div>
+                    <div class="clock-digits-container">
+                        <span id="sec-col" class="clock-digits">00</span>
+                        <span class="large-label">seconds</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Hours and minutes input. -->
+            <div id="inputs">
+                <label for="input-hours">hours:</label>
+                <input id="input-hours" type="number" name="hours" value="0" />
 
-<body>
-    <!-- Underlay of timer begins here. -->
-    <div class="underlay center">
-        <!-- Clock is displayed here. -->
-        <div id="clock"></div>
-        <!-- Here are displayed timer visual signals. -->
-        <div id="signaller">
-            <!-- Place to display counter. -->
-            <div id="counter"><span>--:--:--</span></div>
-            <div class="centered-text">
-                <span class="large-label">hours</span><span class="large-label">minutes</span><span
-                    class="large-label">seconds</span>
+                <label for="input-minutes">minutes:</label>
+                <input
+                    id="input-minutes"
+                    type="number"
+                    name="minutes"
+                    value="0"
+                />
+            </div>
+            <!-- Controlls. -->
+            <div id="control-pannel">
+                <!-- Play, pause, resume form script -->
+                <button id="button-stop">Stop</button>
+                <button id="button-reset">Reset</button>
             </div>
         </div>
-        <!-- Hours and minutes input. -->
-        <div id="inputs">
-            <label for="input-hours">hours:</label>
-            <input id="input-hours" type="number" name="hours" value="0" />
 
-            <label for="input-minutes">minutes:</label>
-            <input id="input-minutes" type="number" name="minutes" value="0" />
-        </div>
-        <!-- Controlls. -->
-        <div id="control-pannel">
-            <!-- Play, pause, resume form script -->
-            <button id="button-stop">Stop</button>
-            <button id="button-reset">Reset</button>
-        </div>
-    </div>
-
-    <!-- Scripts of all kinds. -->
-    <script src="clock.js"></script>
-    <script src="timer.js"></script>
-</body>
-
+        <!-- Scripts of all kinds. -->
+        <script src="clock.js"></script>
+        <script src="timer.js"></script>
+    </body>
 </html>

@@ -8,11 +8,30 @@
   */
 
 // Countdown function:
-function countdown(countdownInSeconds, displayElement) {
+function countdown(
+    countdownInSeconds,
+    displayElementHours,
+    displayElementMinutes,
+    displayElementSeconds
+) {
     timer = setInterval(() => {
         ticks++;
-        displayElement.innerText = `${countdownInSeconds - ticks}`;
-        console.log(countdownInSeconds - ticks);
+        const hours = Math.floor((countdownInSeconds - ticks) / 3600);
+        const minutes = Math.floor(
+            (((countdownInSeconds - ticks) / 3600) % 1).toFixed(4) * 60
+        );
+        const seconds = Math.round(
+            (
+                ((((countdownInSeconds - ticks) / 3600) % 1).toFixed(4) * 60) %
+                1
+            ).toFixed(4) * 60
+        );
+        displayElementHours.innerText =
+            String(hours).length < 2 ? `0${hours}` : `${hours}`;
+        displayElementMinutes.innerText =
+            String(minutes).length < 2 ? `0${minutes}` : `${minutes}`;
+        displayElementSeconds.innerText =
+            String(seconds).length < 2 ? `0${seconds}` : `${seconds}`;
         if (ticks === countdownInSeconds) {
             stopCountdown();
             controlPannel.replaceChild(buttonStart, buttonPause);
@@ -29,7 +48,12 @@ function startCountdown() {
     if (countdownInSeconds <= 0) {
         return;
     } else {
-        countdown(countdownInSeconds, counterDisplay);
+        countdown(
+            countdownInSeconds,
+            hourDisplay,
+            minutesDisplay,
+            secondsDisplay
+        );
         controlPannel.replaceChild(buttonPause, buttonStart);
     }
     // TODO: Disable inputs while counting!
@@ -55,7 +79,12 @@ function resumeCountdown() {
     if (countdownInSeconds <= 0) {
         return;
     } else {
-        countdown(countdownInSeconds, counterDisplay);
+        countdown(
+            countdownInSeconds,
+            hourDisplay,
+            minutesDisplay,
+            secondsDisplay
+        );
         controlPannel.replaceChild(buttonPause, buttonResume);
     }
 }
@@ -67,7 +96,13 @@ function checkTicks() {
 
 // Get counter display element:
 const counterDisplay = document.getElementById('counter');
-counterDisplay.innerHTML = '<span>00:00:00</span>';
+//counterDisplay.innerHTML = '<span>00:00:00</span>';
+// Get hour display:
+const hourDisplay = document.getElementById('hour-col');
+// Get minutes display:
+const minutesDisplay = document.getElementById('minute-col');
+// Get seconds display:
+const secondsDisplay = document.getElementById('sec-col');
 // Get hours input:
 const inputHours = document.getElementById('input-hours');
 // Get minutes input:
@@ -110,7 +145,11 @@ buttonStart.addEventListener('click', () => {
 buttonStop.addEventListener('click', () => {
     stopCountdown();
     controlPannel.replaceChild(buttonStart, buttonPause);
-    counterDisplay.innerHTML = `<span>${inputHours.value}:${inputMinutes.value}:00</span>`;
+    //counterDisplay.innerHTML = `<span>${inputHours.value}:${inputMinutes.value}:00</span>`;
+    hourDisplay.innerText = String(hours).length < 2 ? `0${hours}` : `${hours}`;
+    minutesDisplay.innerText =
+        String(minutes).length < 2 ? `0${minutes}` : `${minutes}`;
+    secondsDisplay.innerText = '00';
     // TODO: click on stop button while countdown is paused
 });
 
@@ -130,5 +169,7 @@ buttonReset.addEventListener('click', () => {
     ticks = 0;
     inputHours.value = '0';
     inputMinutes.value = '0';
-    counterDisplay.innerHTML = '<span>00:00:00</span>';
+    hourDisplay.innerText = '00';
+    minutesDisplay.innerText = '00';
+    secondsDisplay.innerText = '00';
 });
