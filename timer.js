@@ -43,7 +43,8 @@ function countdown(
 function startCountdown() {
     hours = inputHours.value;
     minutes = inputMinutes.value;
-    const countdownInSeconds = hours * 3600 + minutes * 60;
+    seconds = inputSeconds.value;
+    const countdownInSeconds = hours * 3600 + minutes * 60 + parseInt(seconds);
     ticks = 0;
     if (countdownInSeconds <= 0) {
         return;
@@ -75,7 +76,7 @@ function pauseCountdown() {
 function resumeCountdown() {
     hours = inputHours.value;
     minutes = inputMinutes.value;
-    const countdownInSeconds = hours * 3600 + minutes * 60;
+    const countdownInSeconds = hours * 3600 + minutes * 60 + parseInt(seconds);
     if (countdownInSeconds <= 0) {
         return;
     } else {
@@ -107,6 +108,8 @@ const secondsDisplay = document.getElementById('sec-col');
 const inputHours = document.getElementById('input-hours');
 // Get minutes input:
 const inputMinutes = document.getElementById('input-minutes');
+// Get seconds inpput:
+const inputSeconds = document.getElementById('input-seconds');
 // Get control panel element:
 const controlPannel = document.getElementById('control-pannel');
 // Get stop buton:
@@ -129,6 +132,7 @@ controlPannel.insertBefore(buttonStart, buttonStop);
 // Variables for input of countdown:
 let hours;
 let minutes;
+let seconds;
 
 // Timer variable and ticks variable
 let timer;
@@ -138,6 +142,7 @@ let ticks;
 buttonStart.addEventListener('click', () => {
     hours = inputHours.value;
     minutes = inputMinutes.value;
+    seconds = parseInt(inputSeconds.value);
     startCountdown();
 });
 
@@ -145,11 +150,11 @@ buttonStart.addEventListener('click', () => {
 buttonStop.addEventListener('click', () => {
     stopCountdown();
     controlPannel.replaceChild(buttonStart, buttonPause);
-    //counterDisplay.innerHTML = `<span>${inputHours.value}:${inputMinutes.value}:00</span>`;
     hourDisplay.innerText = String(hours).length < 2 ? `0${hours}` : `${hours}`;
     minutesDisplay.innerText =
         String(minutes).length < 2 ? `0${minutes}` : `${minutes}`;
-    secondsDisplay.innerText = '00';
+    secondsDisplay.innerText =
+        String(seconds).length < 2 ? `0${seconds}` : `${seconds}`;
     // TODO: click on stop button while countdown is paused
 });
 
@@ -169,6 +174,7 @@ buttonReset.addEventListener('click', () => {
     ticks = 0;
     inputHours.value = '0';
     inputMinutes.value = '0';
+    inputSeconds.value = '0';
     hourDisplay.innerText = '00';
     minutesDisplay.innerText = '00';
     secondsDisplay.innerText = '00';
